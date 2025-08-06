@@ -1,21 +1,8 @@
-from typing import Generator, List, Any
-
 import pytest
+
 from string_utils.utils import reverse_words_tier_2
 
-@pytest.fixture()
-def edge_whitespace_examples() -> Generator[List[Any], None, None]:
-    test_data = [
-        ('\tHello World\n', '\tWorld Hello\n'),
-        ('\t', '\t'),
-        ('\n    some words  and more\t', '\n    more and  words some\t'),
-    ]
-    yield test_data
-
-@pytest.fixture()
-def invalid_inputs_examples() -> Generator[List[Any], None, None]:
-    test_data = [None, 123, 3.14, [], ()]
-    yield test_data
+pytestmark = [pytest.mark.tier_2]
 
 def test_edge_whitespace(edge_whitespace_examples) -> None:
     for original, expected in edge_whitespace_examples:
@@ -26,3 +13,13 @@ def test_invalid_inputs(invalid_inputs_examples) -> None:
         with pytest.raises(TypeError):
             reverse_words_tier_2(invalid)
 
+################## Testing addoption ####################
+
+def test_reverse_func_selector(reverse_func_tier_selector, get_selected_tier) -> None:
+    result = reverse_func_tier_selector("   One   Two   ")
+    if get_selected_tier == '1':
+        assert result == "Two One"
+        print('Ya jiva istota')
+    else:
+        assert result == "   Two   One   "
+        print('Ya beru u rota')

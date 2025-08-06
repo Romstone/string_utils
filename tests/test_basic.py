@@ -1,5 +1,8 @@
 import pytest
+
 from string_utils.utils import reverse_words
+
+pytestmark = [pytest.mark.tier_1]
 
 normal_string_data = [
     ('Normal sentence', 'sentence Normal'),
@@ -22,17 +25,17 @@ single_string_data = [
 ]
 
 @pytest.mark.parametrize('string, reverse_str', normal_string_data)
-def test_normal_string(string, reverse_str) -> None:
+def test_normal_string(string: str, reverse_str: str) -> None:
     assert reverse_words(string) == reverse_str
 
 @pytest.mark.parametrize('string, reverse_str', whitespace_string_data)
-def test_whitespace_string(string, reverse_str) -> None:
+def test_whitespace_string(string: str, reverse_str: str) -> None:
     assert reverse_words(string) == reverse_str
 
 @pytest.mark.parametrize('string, reverse_str', [("", '')])
-def test_empty_string(string, reverse_str) -> None:
+def test_empty_string(string: str, reverse_str: str) -> None:
     assert reverse_words(string) == reverse_str
 
 @pytest.mark.parametrize('string, reverse_str', single_string_data)
-def test_single_string(string, reverse_str) -> None:
+def test_single_string(string: str, reverse_str: str) -> None:
     assert reverse_words(string) == reverse_str

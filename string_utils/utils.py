@@ -8,7 +8,8 @@ def reverse_words(s: str) -> str:
     Words are separated by whitespace.
     Example: "hello world" → "world hello"
     """
-    return ' '.join(s.split()[::-1])
+    reverse_list = s.split()[::-1]
+    return ' '.join(reverse_list)
 
 def reverse_words_tier_2(s: str) -> str:
     """
@@ -17,7 +18,7 @@ def reverse_words_tier_2(s: str) -> str:
     Raise TypeError if `s` is not a string.
     Preserve all whitespaces as they are like this: "\\\\tHello World\\\\n" -> "\\\\tWorld Hello\\\\n"
     """
-    if type(s) is not str:
+    if not isinstance(s, str):
         raise TypeError('Input must be a string!')
 
     parts = re.findall(r'\s+|\S+', s)
